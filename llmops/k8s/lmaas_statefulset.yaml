@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: lmaas-service
+  namespace: lmaas
+spec:
+  replicas: 1  # Adjust as needed
+  selector:
+    matchLabels:
+      app: lmaas-service
+  template:
+    metadata:
+      labels:
+        app: lmaas-service
+    spec:
+      containers:
+      - name: lmaas-service
+        image: ghcr.io/jingnanzhou/lmaas:mvp_v0.1
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: lmaas-data
+          mountPath: /app/downloads
+      volumes:
+      - name: lmaas-data
+        hostPath:
+          path: /downloads
+        #persistentVolumeClaim:
+        #  claimName: lmaas-pvc  # Replace with your actual PVC name
+      # Consider resource requests and limits for CPU and memory
+      # resources:
+      #   requests:
+      #     cpu: 100m
+      #     memory: 1Gi
+      #   limits:
+      #     cpu: 200m
+      #     memory: 2Gi
+
+  # StatefulSet-specific configurations
+  serviceName: lmaas-service  # Matches the service name
+  # Define pod management policy (Optional)
+  # strategy:
+  #   type: Recreate  # Or "RollingUpdate"

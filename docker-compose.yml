@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  lmaas_service:
+    image: ghcr.io/jingnanzhou/lmaas:mvp_v0.1
+    ports:
+      - target: 8000
+        published: 8000
+    environment:
+      LLM_FILE_NAME: mistral-7b-instruct-v0.2.Q4_K_M.gguf # replace with LLM file name if you choose different LLM model
+
+# windows and Linux/Mac use different format. 
+# (1)  linux/mac, please use '~' for your home or user directory
+# (2)  Windows, please use '%USERPROFILE%\' for your home or user directory
+
+    volumes:
+      - type: bind
+        source: ~/work/genai  # replace with your directory name where you download LLM file 
+#        source: \\\\%USERPROFILE%\\work\\genai  # This is directory for windows
+
+        target: /app/downloads
