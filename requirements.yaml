@@ -1,0 +1,10 @@
+name: myenv
+channels:
+  - anaconda
+  - conda-forge
+dependencies:
+  - torch=2.0.1  # Adjust version as needed
+  - jinja2  # Search for Conda equivalent in required channels
+  - fastapi  # ...
+  - uvicorn  # ...
+  - llama-cpp-python

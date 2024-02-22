@@ -1,0 +1,19 @@
+app:
+  name: LM as a Service (LMaaS)
+  version: 0.1
+  logging: development  # defined in logging.yaml
+
+  models:
+    download_path: downloads  # directory under the project
+    chat:
+      model_file: ${oc.env:LLM_FILE_NAME, mistral-7b-instruct-v0.2.Q4_K_M.gguf} # path is in downloads directory
+      hf_model: TheBloke/Mistral-7B-Instruct-v0.2-GGUF
+
+#      model_file: ${oc.env:LLM_FILE_NAME, llama-2-7b-chat.Q4_K_S.gguf} # path is in downloads directory
+#      hf_model: TheBloke/Llama-2-7B-Chat-GGUF
+
+
+#      model_file: ${oc.env:LLM_FILE_NAME, lgritlm-7b_q4_1.gguf} # path is in downloads directory
+#      hf_model: cohesionet/GritLM-7B_gguf
+
+      quantization: gguf

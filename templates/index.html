@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LM as a Service (LMaaS)</title>
+</head>
+<body>
+    <h1>Welcome to LMaaS API</h1>
+    <h2>Available API Endpoints:</h2>
+    <ul>
+        {% for path, operations in openapi_schema.paths.items() %}
+            <li>
+                <h3>{{ path }}</h3>
+                <ul>
+                    {% for operation in operations.values() %}
+                        <li> {{ operation.operationId }}: {{ operation.summary }}  <a href="/docs">Try it out </a</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
